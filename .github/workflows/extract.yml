@@ -1,0 +1,44 @@
+name: Extract Rumi Ghazals
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'  # Run weekly on Sunday at midnight
+  workflow_dispatch:      # Allow manual trigger
+  push:
+    branches:
+      - main
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+    
+    - name: Install dependencies
+      run: |
+        pip install requests beautifulsoup4
+    
+    - name: Run extraction script
+      run: |
+        python extract_ghazals.py
+    
+    - name: Check output files
+      run: |
+        ls -la output/
+        echo "Files created:"
+        find output -type f
+    
+    - name: Commit and push if changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add output/ ghazals_complete.md 2>/dev/null || true
+        git diff --staged --quiet || git commit -m "Auto-update: Extract ghazals $(date +'%Y-%m-%d')"
+        git push
