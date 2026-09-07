@@ -1,0 +1,14 @@
+============================================================
+WORKFLOW COMPLETED SUCCESSFULLY
+============================================================
+Start range: 1
+End range: 3230
+Total processed: 3230
+Total failed: 0
+Success rate: 100.0%
+Output directory: output/
+Files created:
+  - ghazals_complete.md (Main Markdown)
+  - ghazals_backup.json (JSON backup)
+  - failed_ghazals.txt (Failed list)
+============================================================
