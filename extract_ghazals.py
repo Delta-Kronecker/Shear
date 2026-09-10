@@ -6,7 +6,7 @@ from datetime import datetime
 BASE_URL = "https://ganjoor.net/moulavi/shams/ghazalsh/sh"
 START = 1
 END = 3230
-CONCURRENCY = 50          # parallel requests
+CONCURRENCY = 300          # parallel requests
 TIMEOUT = 15
 OUTPUT_FILE = "ghazals_complete.md"
 HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; GhazalBot/1.0)"}
